@@ -67,8 +67,6 @@ SET(G2O_LIBS
 set(${PROJECT_NAME}_CATKIN_DEPS
     roscpp
     message_filters
-    ${G2O_LIBS}
-    fmt
 )
 # Find other packages
 find_package(catkin REQUIRED COMPONENTS
@@ -107,6 +105,8 @@ set(PROJECT_LIBS
     pthread
     atomic
     ${catkin_LIBRARIES}
+    ${G2O_LIBS}
+    fmt
 )
 
 # If you are making some shared libraries this will word
@@ -118,7 +118,7 @@ set(PROJECT_LIBS
 
 # Executables and target dependencies
 add_executable(kitti_stereo_odo
-    src/ros_kitti_stereo_odo.cpp
+    src/kitti_stereo_odo.cpp
     src/ros_node.cpp
     ${PROJECT_SOURCE}
 )
