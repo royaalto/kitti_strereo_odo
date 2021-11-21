@@ -26,6 +26,7 @@ int main(int argc, char** argv)
     ros::NodeHandle nh("~");
 
     KittiStereoOdoNode kitti_stereo_odo_node(nh);
+    kitti_stereo_odo_node.init();
 
     double rate_Hz = 0;
     nh.param<double>("rate_Hz", rate_Hz, 10);

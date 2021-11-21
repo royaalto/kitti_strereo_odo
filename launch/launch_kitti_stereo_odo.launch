@@ -6,8 +6,12 @@
   <param name="/use_sim_time"         value="$(arg use_sim_time)" /> -->
   <arg name="verbose"               default="true" />
   <arg name="rate_Hz"                default="10" />
+  <arg name="left_cam_topic"         default="/camera/left/image_raw" />
+  <arg name="right_cam_topic"         default="/camera/right/image_raw" />
   <node pkg="kitti_stereo_odo" type="kitti_stereo_odo" name="kitti_stereo_odo" output="screen" launch-prefix="" >
     <param name="verbose"                  value="$(arg verbose)"/>
     <param name="rate_Hz"                  value="$(arg rate_Hz)"/>
+    <param name="left_cam_topic"            value="$(arg left_cam_topic)"/>
+    <param name="right_cam_topic"           value="$(arg right_cam_topic)"/>
   </node>
 </launch>
