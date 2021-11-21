@@ -9,6 +9,7 @@
 #include <message_filters/sync_policies/exact_time.h>
 #include <sensor_msgs/Image.h>
 #include <thread>
+#include <mutex>
 using ImagePolicy = message_filters::sync_policies::ExactTime<sensor_msgs::Image, sensor_msgs::Image>;
 class KittiStereoOdoNode
 {
@@ -35,12 +36,17 @@ private:
      */
     void imageCallBack(const sensor_msgs::ImageConstPtr& left_image, const sensor_msgs::ImageConstPtr& right_image);
 
+    void stereoImageHandle();
+
     //ROS node handle.
     ros::NodeHandle nh_;
 
     //thread
-    std::thread input_;
-
+    std::thread stereo_image_handle_thread_;
+    //lock guard
+    std::mutex image_buffer_mutex_;
+    //image buffer
+    std::deque<std::vector<sensor_msgs::Image>> image_buffer_;
     //camera topic
     std::string left_cam_topic_;
     std::string right_cam_topic_;
